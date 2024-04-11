@@ -1,26 +1,20 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-import CatStyle from './components/CatStyle';
-import CatList from './components/CatList';
-import CatImage from './components/CatImage';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import SupplierList from './components/SupplierList';
+import SupplierForm from './components/SupplierForm';
+
+const Stack = createNativeStackNavigator();
 
 const App = () => {
   return (
-    <View style={styles.container}>
-      <CatStyle name="Maru" />
-      <CatList names={['Maru', 'Jellylorum', 'Spot']} />
-      <CatImage />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="SupplierList">
+        <Stack.Screen name="SupplierList" component={SupplierList} options={{ title: 'Lista de Fornecedores' }} />
+        <Stack.Screen name="SupplierForm" component={SupplierForm} options={{ title: 'Cadastro de Fornecedor' }} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 };
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-});
 
 export default App;
